@@ -1,0 +1,137 @@
+:root {
+  --paper: #faf8f0;
+  --ink: #30342f;
+  --muted: #62675e;
+  --x: #305c88;
+  --o: #9b4640;
+  --win: #3f653f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  color: var(--ink);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--paper) 0,
+    var(--paper) 31px,
+    #dfe5e5 31px,
+    #dfe5e5 32px
+  );
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.5;
+}
+
+#app {
+  width: 100%;
+  max-width: 360px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: normal;
+}
+
+#subtitle {
+  margin: 0.5rem 0 2rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  aspect-ratio: 1;
+}
+
+button {
+  cursor: pointer;
+}
+
+.cell {
+  appearance: none;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: clamp(2.5rem, 12vw, 4rem);
+  line-height: 1;
+}
+
+.cell:not(:nth-child(3n)) {
+  border-right: 2px solid var(--ink);
+}
+
+.cell:nth-child(-n + 6) {
+  border-bottom: 2px solid var(--ink);
+}
+
+.cell:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.cell:not(:disabled):hover {
+  background: #30342f0d;
+}
+
+.cell[data-player='X'] {
+  color: var(--x);
+}
+
+.cell[data-player='O'] {
+  color: var(--o);
+}
+
+.cell.win {
+  color: var(--win);
+  text-decoration: underline;
+  text-underline-offset: 0.1em;
+}
+
+#status {
+  margin: 1.5rem 0 1rem;
+  min-height: 1.5rem;
+  color: var(--muted);
+}
+
+#status.end {
+  color: var(--win);
+  font-weight: bold;
+}
+
+#restart {
+  appearance: none;
+  padding: 0.35rem 1rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+}
+
+#restart:hover,
+#restart:active {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
